@@ -3,6 +3,8 @@ import React from "react";
 import "./Sidebar.css";
 
 import AddIcon from "@material-ui/icons/Add";
+import SidebarOption from "./SidebarOption/SidebarOption";
+import InboxIcon from "@material-ui/icons/Inbox";
 
 const Sidebar = () => {
   return (
@@ -13,6 +15,7 @@ const Sidebar = () => {
       >
         COMPOSE
       </Button>
+      <SidebarOption Icon={InboxIcon} title="Inbox" number={54} />
     </div>
   );
 };
