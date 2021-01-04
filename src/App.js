@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Mail from "./components/Main/Mail/Mail";
 import EmailList from "./components/Main/EmailList/EmailList";
+import SendMail from "./components/SendMail/SendMail";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <SendMail />
       </div>
     </Router>
   );
