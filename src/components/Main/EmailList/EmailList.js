@@ -1,5 +1,4 @@
-import { IconButton } from "@material-ui/core";
-import { CheckBox } from "@material-ui/icons";
+import { Checkbox, IconButton } from "@material-ui/core";
 import React from "react";
 import "./EmailList.css";
 
@@ -14,13 +13,14 @@ import InboxIcon from "@material-ui/icons/Inbox";
 import Section from "./Section/Section";
 import PeopleIcon from "@material-ui/icons/People";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import EmailRow from "./EmailRow/EmailRow";
 
 const EmailList = () => {
   return (
     <div className="emailList">
       <div className="emailList__settings">
         <div className="emailList__settingsLeft">
-          <CheckBox />
+          <Checkbox />
           <IconButton>
             <ArrowDropDownIcon />
           </IconButton>
@@ -50,6 +50,14 @@ const EmailList = () => {
         <Section Icon={InboxIcon} title="primary" color="red" selected />
         <Section Icon={PeopleIcon} title="Social" color="#1A73E8" />
         <Section Icon={LocalOfferIcon} title="Promotions" color="green" />
+      </div>
+      <div className="emaillist__list">
+        <EmailRow
+          title="Twitch"
+          subject="Fellow Streamer!!"
+          description="This is great"
+          time="10pm"
+        />
       </div>
     </div>
   );
