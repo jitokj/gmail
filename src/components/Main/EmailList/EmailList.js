@@ -1,5 +1,5 @@
 import { Checkbox, IconButton } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./EmailList.css";
 
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -14,8 +14,23 @@ import Section from "./Section/Section";
 import PeopleIcon from "@material-ui/icons/People";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import EmailRow from "./EmailRow/EmailRow";
+import { db } from "../../../firebase";
 
 const EmailList = () => {
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    db.collection("emails")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setEmails(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
   return (
     <div className="emailList">
       <div className="emailList__settings">
@@ -52,12 +67,16 @@ const EmailList = () => {
         <Section Icon={LocalOfferIcon} title="Promotions" color="green" />
       </div>
       <div className="emaillist__list">
-        <EmailRow
-          title="Twitch"
-          subject="Fellow Streamer!!"
-          description="This is great"
-          time="10pm"
-        />
+        {emails.map(({ id, data: { to, subject, message, timestamp } }) => (
+          <EmailRow
+            id={id}
+            key={id}
+            title={to}
+            subject={subject}
+            description={message}
+            time={new Date(timestamp?.seconds * 1000).toUTCString()}
+          />
+        ))}
       </div>
     </div>
   );
