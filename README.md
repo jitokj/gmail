@@ -5,3 +5,7 @@
 **Redux Store**
 **Firebase Authentication**
 **Material-ui**
+
+#### deployed app:
+
+## https://fir-39d73.web.app/
